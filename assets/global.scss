@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700&display=swap');
+
+$text-dark: #292D32;
+$text-grey: #666666;
+$white-bg: #FAFAFC;
+$blue-bg: #1A4CA3;
+$white: #FFFFFF;
+
+body {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: $text-dark !important;
+}
+//
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: $white-bg;
+  &.column {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+  }
+}
+//
+.logo {
+  font-size: 40px;
+  color: #663399;
+  margin: 0 0 1rem 0;
+  span {
+    color: $blue-bg;
+  }
+  @media (max-width: 981px) {
+    text-align: center;
+  }
+  @media (max-width: 581px) {
+    font-size: 32px;
+    margin: 0 0 .5rem 0;
+  }
+}
+.title {
+  font-size: 28px;
+  margin: 0 0 1rem 0;
+  @media (max-width: 981px) {
+    text-align: center;
+  }
+  @media (max-width: 581px) {
+    font-size: 24px;
+    margin: 0 0 .5rem 0;
+  }
+  @media (max-width: 376px) {
+    font-size: 16px;
+  }
+  span {
+    color: $blue-bg;
+  }
+}
+.text {
+  font-size: 16px;
+  margin: 0 0 1rem 0;
+  @media (max-width: 981px) {
+    text-align: center;
+  }
+  @media (max-width: 581px) {
+    margin: 0 0 .5rem 0;
+  }
+  @media (max-width: 376px) {
+    font-size: 14px;
+  }
+}
+.custom-field {
+  height: 64px;
+}
+.plan-color {
+  color: $text-grey;
+}
+// Element UI Customs
+.el-form-item__label {
+  color: $text-dark !important;
+}
+// Box
+.box-info {
+  background-color: $white-bg;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 981px) {
+    width: 100%;
+  }
+}
+.box-form {
+  background-color: $white;
+  width: 65%;
+  padding: 2rem;
+  border: 1px solid #eeeded;
+  border-radius: 8px;
+  @media (max-width: 981px) {
+    width: 50%;
+  }
+  @media (max-width: 581px) {
+    width: 75%;
+  }
+}
+.box-bg {
+  background-color: $blue-bg;
+  width: 50%;
+  @media (max-width: 981px) {
+    display: none;
+  }
+}
+//
+
+
