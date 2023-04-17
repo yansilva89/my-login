@@ -16,7 +16,7 @@
               <el-input v-model="form.username" class="custom-field" placeholder="Seu e-mail" />
             </el-form-item>
             <el-form-item label="Senha">
-              <el-input v-model="form.password" class="custom-field" placeholder="Sua senha" />
+              <el-input v-model="form.password" type="password" class="custom-field" placeholder="Sua senha" />
             </el-form-item>
             <el-form-item>
               <div style="width: 100%; text-align: right;">
@@ -24,10 +24,12 @@
               </div>
             </el-form-item>
             <!-- Btn -->
-            <CustomBtn @click="onSubmit" />
             <el-form-item>
-              Ainda não tem conta? 
-              <el-link :underline="false" target="_blank" style="margin-left: 4px; color: #663399; font-weight: 600;">Cadastre-se</el-link>
+              <CustomBtn name="Fazer Login" width="100" @click="onSubmit" />
+            </el-form-item>
+            <el-form-item>
+              Ainda não tem conta?
+              <el-link :underline="false" target="_blank" style="margin-left: 4px; color: #663399; font-weight: 600;" @click="toPlans">Cadastre-se</el-link>
             </el-form-item>
           </el-form>
         </div>
@@ -38,17 +40,34 @@
 </template>
 
 <script setup lang="ts">
+import { UseUserStore } from '~/stores/user';
+const router = useRouter();
+const userStore = UseUserStore()
+
 const form = reactive({
-  username: '',
-  password: ''
+  username: 'johnd',
+  password: 'm38rmF$'
 })
 
 const onSubmit = async () => {
-  console.log('submit!')
-  // const data = await $fetch( 'https://fakestoreapi.com/users', {
-  //       method: 'POST',
-  //       body: form
-  //   } ) as any;
-  // console.log(data);
+  const result = await userStore.login(form)
+  if (result) {
+    ElNotification({
+      title: 'Sucesso',
+      message: 'Usuário logado com sucesso.',
+      type: 'success',
+    })
+    router.push('/home');
+  } else {
+    ElNotification({
+      title: 'Erro',
+      message: 'Usuário ou senha incorretos.',
+      type: 'error',
+    })
+  }
+}
+
+const toPlans = () => {
+  router.push('/plan');
 }
 </script>

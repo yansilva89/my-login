@@ -1,5 +1,5 @@
 <template>
-  <div v-if="selectedPlan === 0" class="container column" style="margin-top: 2rem;">
+  <div v-if="selectedPlanId === 0" class="container column">
     <h1 class="logo">
       <span>My</span>
       Login
@@ -12,21 +12,53 @@
       <CardPlan
         v-for="plan in thePlans"
         :key="plan.id"
+        :hint="plan.hint"
+        :selected="selectedPlanId"
         :title="plan.title"
         :description="plan.description"
         :comment="plan.comment"
         :price="plan.price"
         :country="plan.country"
         :benefits="plan.benefits"
-        @select-plan="selectedPlan = plan.id"
+        @select-plan="toSelectPlan(plan.id)"
       />
+    </div>
+  </div>
+  <div v-else class="container column">
+    <!-- balbalbal {{ thePlans.find(plan => (plan.id === selectedPlanId)) }} -->
+    <h1 class="logo">
+      <span>My</span>
+      Login
+    </h1>
+    <div style="text-align: center;">
+      <h3 class="title">Você está muito próximo de adquirir<br>grandes <span>benefícios</span></h3>
+      <p class="text">Cadastre-se e entre para nossa comunidade</p>
+    </div>
+    <div class="signup-box">
+      <div class="signup">Cadastre-se</div>
+      <div class="cardplan">
+        <CardPlan
+        :hint="selectedPlan?.hint"
+        :selected="selectedPlanId"
+        :title="selectedPlan?.title || ''"
+        :description="selectedPlan?.description || ''"
+        :comment="selectedPlan?.comment"
+        :price="selectedPlan?.price"
+        :country="selectedPlan?.country"
+        :benefits="selectedPlan?.benefits"
+      />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-const selectedPlan = ref(0)
+const selectedPlanId = ref(0)
+const toSelectPlan = (id: number) => {
+  selectedPlanId.value = id
+}
+
+const selectedPlan = computed(() => thePlans.value.find(plan => plan.id === selectedPlanId.value))
 
 interface planInterface {
   id: number
@@ -34,50 +66,52 @@ interface planInterface {
   description: string
   comment?: string
   price?: number
+  hint?: string
   country?: 'br' | 'usa'
   benefits?: string[]
 }
 const thePlans = ref<planInterface[]>([{
   id: 1,
   title: 'Básico',
-  description: 'Ideal para quem está começando',
-  comment: 'Apenas para testes',
+  description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  comment: 'Lorem Ipsum is simply dummy text',
   price: 0,
   country: 'br',
   benefits: [
-    '1 usuário',
-    '1 site',
-    '1 GB de armazenamento',
-    '1 GB de tráfego',
-    'Suporte básico'
+    'Lorem Ipsum',
+    'Lorem Ipsum is simply',
+    'Lorem Ipsum is simply dummy text',
+    'Lorem Ipsum is simply dummy',
+    'Lorem Ipsum is simply'
   ]
 }, {
   id: 2,
   title: 'Intermediário',
-  description: 'Ideal para quem está começando',
-  comment: 'Apenas para testes',
-  price: 99,
+  description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  comment: 'Lorem Ipsum is simply dummy text',
+  price: 499,
+  hint: 'Mais Usado',
   country: 'br',
   benefits: [
-    '1 usuário',
-    '1 site',
-    '1 GB de armazenamento',
-    '1 GB de tráfego',
-    'Suporte básico'
+    'Lorem Ipsum',
+    'Lorem Ipsum is simply',
+    'Lorem Ipsum is simply dummy text',
+    'Lorem Ipsum is simply dummy',
+    'Lorem Ipsum is simply'
   ]
 }, {
   id: 3,
   title: 'Avançado',
-  description: 'Ideal para quem está começando',
-  comment: 'Apenas para testes',
+  description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  comment: 'Lorem Ipsum is simply dummy text',
   price: 999,
   country: 'br',
   benefits: [
-    '1 usuário',
-    '1 site',
-    '1 GB de armazenamento',
-    '1 GB de tráfego',
-    'Suporte básico'
+    'Lorem Ipsum',
+    'Lorem Ipsum is simply',
+    'Lorem Ipsum is simply dummy text',
+    'Lorem Ipsum is simply dummy',
+    'Lorem Ipsum is simply'
   ]
 }])
 
@@ -96,6 +130,15 @@ const thePlans = ref<planInterface[]>([{
   @media (max-width: 581px) {
     grid-template-columns: repeat(1, 1fr);
     gap: 0;
+  }
+}
+.signup-box {
+  width: 85%;
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  margin-top: 2rem;
+  @media (max-width: 581px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>
