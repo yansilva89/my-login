@@ -9,16 +9,78 @@
       <p class="text">Escolha o plano que mais combina com você</p>
     </div>
     <div class="plan">
-      <CardPlan />
-      <CardPlan />
-      <CardPlan />
+      <CardPlan
+        v-for="plan in thePlans"
+        :key="plan.id"
+        :title="plan.title"
+        :description="plan.description"
+        :comment="plan.comment"
+        :price="plan.price"
+        :country="plan.country"
+        :benefits="plan.benefits"
+        @select-plan="selectedPlan = plan.id"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-
+import { ref } from 'vue'
 const selectedPlan = ref(0)
+
+interface planInterface {
+  id: number
+  title: string
+  description: string
+  comment?: string
+  price?: number
+  country?: 'br' | 'usa'
+  benefits?: string[]
+}
+const thePlans = ref<planInterface[]>([{
+  id: 1,
+  title: 'Básico',
+  description: 'Ideal para quem está começando',
+  comment: 'Apenas para testes',
+  price: 0,
+  country: 'br',
+  benefits: [
+    '1 usuário',
+    '1 site',
+    '1 GB de armazenamento',
+    '1 GB de tráfego',
+    'Suporte básico'
+  ]
+}, {
+  id: 2,
+  title: 'Intermediário',
+  description: 'Ideal para quem está começando',
+  comment: 'Apenas para testes',
+  price: 99,
+  country: 'br',
+  benefits: [
+    '1 usuário',
+    '1 site',
+    '1 GB de armazenamento',
+    '1 GB de tráfego',
+    'Suporte básico'
+  ]
+}, {
+  id: 3,
+  title: 'Avançado',
+  description: 'Ideal para quem está começando',
+  comment: 'Apenas para testes',
+  price: 999,
+  country: 'br',
+  benefits: [
+    '1 usuário',
+    '1 site',
+    '1 GB de armazenamento',
+    '1 GB de tráfego',
+    'Suporte básico'
+  ]
+}])
+
 </script>
 <style lang="scss" scoped>
 .plan {
