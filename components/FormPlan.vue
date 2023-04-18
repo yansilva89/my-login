@@ -28,10 +28,10 @@ const router = useRouter();
 const userStore = UseUserStore()
 
 const form = reactive({
-  username: 'johnd',
+  username: '',
   phone: '',
   email: '',
-  password: 'm38rmF',
+  password: '',
   confirmPassword: ''
 })
 

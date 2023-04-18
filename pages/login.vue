@@ -8,12 +8,12 @@
         </h1>
         <div>
           <h3 class="title">Entre na sua conta</h3>
-          <p class="text">Para acessar sua conta informe seu e-mail e senha</p>
+          <p class="text">Para acessar sua conta informe seu nome de usuário e senha</p>
         </div>
         <div>
           <el-form :model="form" label-position="top">
-            <el-form-item label="E-mail">
-              <el-input v-model="form.username" class="custom-field" placeholder="Seu e-mail" />
+            <el-form-item label="Usuário">
+              <el-input v-model="form.username" class="custom-field" placeholder="Nome do usuário" />
             </el-form-item>
             <el-form-item label="Senha">
               <el-input v-model="form.password" type="password" class="custom-field" placeholder="Sua senha" />
