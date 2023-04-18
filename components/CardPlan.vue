@@ -11,6 +11,7 @@
     <p class="description">{{ description }}</p>
     <p class="comment">{{ comment }}</p>
     <CustomBtn
+    v-if="selected === 0"
     name="Escolher Plano"
     width="80"
     @click="$emit('select-plan')" 

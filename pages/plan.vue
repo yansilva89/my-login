@@ -9,23 +9,10 @@
       <p class="text">Escolha o plano que mais combina com você</p>
     </div>
     <div class="plan">
-      <CardPlan
-        v-for="plan in thePlans"
-        :key="plan.id"
-        :hint="plan.hint"
-        :selected="selectedPlanId"
-        :title="plan.title"
-        :description="plan.description"
-        :comment="plan.comment"
-        :price="plan.price"
-        :country="plan.country"
-        :benefits="plan.benefits"
-        @select-plan="toSelectPlan(plan.id)"
-      />
+      <CardPlan v-for="plan in thePlans" :key="plan.id" :hint="plan.hint" :selected="selectedPlanId" :title="plan.title" :description="plan.description" :comment="plan.comment" :price="plan.price" :country="plan.country" :benefits="plan.benefits" @select-plan="toSelectPlan(plan.id)" />
     </div>
   </div>
   <div v-else class="container column">
-    <!-- balbalbal {{ thePlans.find(plan => (plan.id === selectedPlanId)) }} -->
     <h1 class="logo">
       <span>My</span>
       Login
@@ -35,18 +22,15 @@
       <p class="text">Cadastre-se e entre para nossa comunidade</p>
     </div>
     <div class="signup-box">
-      <div class="signup">Cadastre-se</div>
+      <div class="signup">
+        <div>
+          <h3 class="title">Dados Pessoais</h3>
+          <p class="text">Informe seus dados pessoais para acesso à sua conta</p>
+        </div>
+        <FormPlan />
+      </div>
       <div class="cardplan">
-        <CardPlan
-        :hint="selectedPlan?.hint"
-        :selected="selectedPlanId"
-        :title="selectedPlan?.title || ''"
-        :description="selectedPlan?.description || ''"
-        :comment="selectedPlan?.comment"
-        :price="selectedPlan?.price"
-        :country="selectedPlan?.country"
-        :benefits="selectedPlan?.benefits"
-      />
+        <CardPlan :hint="selectedPlan?.hint" :selected="selectedPlanId" :title="selectedPlan?.title || ''" :description="selectedPlan?.description || ''" :comment="selectedPlan?.comment" :price="selectedPlan?.price" :country="selectedPlan?.country" :benefits="selectedPlan?.benefits" />
       </div>
     </div>
   </div>
@@ -123,22 +107,33 @@ const thePlans = ref<planInterface[]>([{
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-top: 2rem;
+
   @media (max-width: 981px) {
     grid-template-columns: repeat(2, 1fr);
     gap: .5rem;
   }
+
   @media (max-width: 581px) {
     grid-template-columns: repeat(1, 1fr);
     gap: 0;
   }
 }
+
 .signup-box {
   width: 85%;
   display: grid;
   grid-template-columns: 60% 1fr;
+  gap: 1.5rem;
   margin-top: 2rem;
+
   @media (max-width: 581px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .signup {
+    background-color: #fff;
+    padding: 2rem 2rem;
+    border: 1px solid #eeeded;
+    border-radius: 8px; 
   }
 }
 </style>
