@@ -21,6 +21,13 @@
     <ul class="benefits">
       <li v-for="benefit in benefits" :key="benefit">{{ benefit }}</li>
     </ul>
+    <CustomBtn
+    v-if="selected > 0"
+    name="Trocar Plano"
+    width="50"
+    @click="$emit('select-plan')" 
+    style="margin: 0 1rem 1rem 1rem;"
+    />
   </div>
 </template>
 

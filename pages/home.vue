@@ -5,7 +5,7 @@
       Login
     </h1>
     <div class="user-session" style="margin: 0 2rem 0 0;" @click="showDialogUser">
-      <h1>J</h1>
+      <h1>{{ userStore.user.name.firstname[0] }}</h1>
     </div>
     <div class="user-dialog" v-if="dialogUser" @click="logoutUser()">
       <p>Sair</p>
@@ -13,14 +13,14 @@
   </header>
   <div class="content">
     <div style="width: 100%; margin-bottom: 1rem;">
-      <h3 class="title">Olá John,</h3>
+      <h3 class="title">Olá {{ userStore.user.name.firstname }},</h3>
       <p class="text">Seja bem vindo a nossa comunidade de usuários.</p>
     </div>
     <div class="video" style="width: 100%;">
       <iframe width="100%" height="400px" src="https://www.youtube.com/embed/l2y8oYqNV8I" title="Video Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div style="width: 100%; margin-top: 1.5rem;">
-      <p class="text">Caso tenha dúvidas, <span style="text-decoration: underline;">visite nossa central de ajuda.</span></p>
+      <p class="text">Caso tenha dúvidas, <span style="text-decoration: underline; cursor: pointer;">visite nossa central de ajuda.</span></p>
     </div>
   </div>
 </template>
@@ -66,6 +66,7 @@ const logoutUser = () => {
     color: #3c3c3c;
     width: 120px;
     height: 48px;
+    border: 1px solid #b1b1b1;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color .3s ease-in-out;
@@ -83,6 +84,7 @@ const logoutUser = () => {
     border-radius: 50px;
     cursor: pointer;
     border: 1px solid #eeeded;
+    text-transform: uppercase;
     &:hover {
       border: 1px solid #666666;
     }

@@ -74,5 +74,5 @@ export const UseUserStore = defineStore('user', () => {
     token.value = ''
   }
 
-  return { user, login, getUser, addUser, logout }
+  return { user, login, getUser, addUser, logout, token }
 })

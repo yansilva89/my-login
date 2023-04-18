@@ -61,7 +61,7 @@ const onSubmit = async () => {
   } else {
     ElNotification({
       title: 'Erro',
-      message: 'Usuário ou senha incorretos.',
+      message: 'Usuário e/ou senha incorretos.',
       type: 'error',
     })
   }
@@ -70,4 +70,8 @@ const onSubmit = async () => {
 const toPlans = () => {
   router.push('/plan');
 }
+
+definePageMeta({
+  public: true
+})
 </script>

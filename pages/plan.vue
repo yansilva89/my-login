@@ -30,7 +30,7 @@
         <FormPlan />
       </div>
       <div class="cardplan">
-        <CardPlan :hint="selectedPlan?.hint" :selected="selectedPlanId" :title="selectedPlan?.title || ''" :description="selectedPlan?.description || ''" :comment="selectedPlan?.comment" :price="selectedPlan?.price" :country="selectedPlan?.country" :benefits="selectedPlan?.benefits" />
+        <CardPlan :hint="selectedPlan?.hint" :selected="selectedPlanId" :title="selectedPlan?.title || ''" :description="selectedPlan?.description || ''" :comment="selectedPlan?.comment" :price="selectedPlan?.price" :country="selectedPlan?.country" :benefits="selectedPlan?.benefits" @select-plan="selectedPlanId = 0" />
       </div>
     </div>
   </div>
@@ -64,8 +64,8 @@ const thePlans = ref<planInterface[]>([{
   benefits: [
     'Lorem Ipsum',
     'Lorem Ipsum is simply',
-    'Lorem Ipsum is simply dummy text',
     'Lorem Ipsum is simply dummy',
+    'Lorem Ipsum is simply',
     'Lorem Ipsum is simply'
   ]
 }, {
@@ -79,7 +79,7 @@ const thePlans = ref<planInterface[]>([{
   benefits: [
     'Lorem Ipsum',
     'Lorem Ipsum is simply',
-    'Lorem Ipsum is simply dummy text',
+    'Lorem Ipsum is simply dummy',
     'Lorem Ipsum is simply dummy',
     'Lorem Ipsum is simply'
   ]
@@ -93,12 +93,15 @@ const thePlans = ref<planInterface[]>([{
   benefits: [
     'Lorem Ipsum',
     'Lorem Ipsum is simply',
-    'Lorem Ipsum is simply dummy text',
+    'Lorem Ipsum is simply',
     'Lorem Ipsum is simply dummy',
     'Lorem Ipsum is simply'
   ]
 }])
 
+definePageMeta({
+  public: true
+})
 </script>
 <style lang="scss" scoped>
 .plan {
